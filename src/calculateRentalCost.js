@@ -13,16 +13,15 @@ function calculateRentalCost(days) {
   const rentForDay = 40;
 
   const calculatedRent = rentForDay * days;
+  let currentDiscount = 0;
 
   if (days >= longTermDays) {
-    return calculatedRent - longTermDiscount;
+    currentDiscount = longTermDiscount;
+  } else if (days >= shortTermDays) {
+    currentDiscount = shortTermDiscount;
   }
 
-  if (days >= shortTermDays) {
-    return calculatedRent - shortTermDiscount;
-  }
-
-  return calculatedRent;
+  return calculatedRent - currentDiscount;
 }
 
 module.exports = calculateRentalCost;
